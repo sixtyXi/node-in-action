@@ -11,7 +11,7 @@
   },
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node-dev app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -19,6 +19,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "node-readability": "^3.0.0",
     "sqlite3": "^4.1.0"
+  },
+  "devDependencies": {
+    "node-dev": "^4.0.0"
   }
 }

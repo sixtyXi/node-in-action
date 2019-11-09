@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const read = require('node-readability');
 
 const Article = require('../models/article.orm');
 
@@ -18,10 +19,21 @@ router
     });
   })
   .post((req, res, next) => {
-    const article = { title: req.body.title };
-    Article.create(article, err => {
-      if (err) return next(err);
-      res.send({ message: 'Created' });
+    const url = req.body.url;
+
+    read(url, (err, result) => {
+      if (err || !result) {
+        res.status = 500;
+        return next(new Error('Error downloading article'));
+      }
+
+      Article.create(
+        { title: result.title, content: result.content },
+        (err, article) => {
+          if (err) return next(err);
+          res.send(article);
+        }
+      );
     });
   });
 

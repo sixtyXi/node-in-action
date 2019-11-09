@@ -11,6 +11,6 @@ app.use('/articles', articleRouter);
 
 app.listen(app.get('port'), () => {
   console.log(
-    `Express web app available at http://localhost:${app.get('port')}`
+    `Express web app available at http://localhost:${app.get('port')}/articles`
   );
 });
